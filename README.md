@@ -1,63 +1,63 @@
-![Tests passing](https://github.com/coinfabrik/stacy/actions/workflows/test.yml/badge.svg)
+![Pruebas aprobadas](https://github.com/coinfabrik/stacy/actions/workflows/test.yml/badge.svg)
 
-# STACY - Stacks Static Analyzer for Clarity
+# STACY - Analizador Estático para Clarity en Stacks
 
-Stacy is an open-source static analyzer for Clarity smart contracts. It is intended to assist Clarity smart contract developers and auditors detect common security issues and deviations from best practices. 
+Stacy es un analizador estático de código abierto para contratos inteligentes escritos en Clarity. Está diseñado para ayudar a los desarrolladores y auditores de contratos inteligentes en Clarity a detectar problemas comunes de seguridad y desviaciones de las mejores prácticas.
 
-This tool will help developers write secure and more robust smart contracts.
+Esta herramienta ayudará a los desarrolladores a escribir contratos inteligentes más seguros y robustos.
 
-## Install
+## Instalación
 
 ```shell
 pip install git+https://github.com/xlittlerag/tree-sitter-clarity@6eb27feb
 pip install stacy-analyzer
 ```
 
-## Documentation
+## Documentación
 
-- [Vulnerabilities](https://github.com/CoinFabrik/stacy/tree/main/docs/vulnerabilities)
+- [Vulnerabilidades](https://github.com/CoinFabrik/stacy/tree/main/docs/vulnerabilities)
 
-## Detectors
+## Detectores
 
-Severities are based on worst case scenarios and the detector's finding may vary depending on the context.
+Las severidades están basadas en los peores escenarios posibles y los resultados de los detectores pueden variar según el contexto.
 
-| Detector ID                                                                                                                    | What it Detects                                                                                                                                                                                           | Test Cases                                                                                                                                                                                                                                               | Severity    |
+| ID del Detector                                                                                                                | Qué Detecta                                                                                                                                                                                               | Casos de Prueba                                                                                                                                                                                                                                          | Severidad   |
 |--------------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [assert-block-height](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/1-assert-block-height.md)             | Usage of `block-height` as time tracker.                  | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/assert_block_height) | Critical    |
-| [call-inside-as-contract](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/2-call-inside-as-contract.md)     | Calling another contract losing the first contract's context.                                                           | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/call_inside_as_contract)                                                                                                                                                | Critical    |
-| [divide-before-multiply](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/3-divide-before-multiply.md)       | Performing a division operation before a multiplication, leading to loss of precision.                                                                                | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/divide_before_multiply)                                                                             | Critical    |
-| [private-function-not-used](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/4-private-function-not-used.md) | Dead code(private functions) inside the smart contract.                                                                        | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/private_function_not_used)                                                                                                                                                                  | Enhancement |
-| [todo-comment](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/5-todo-comment.md)                           | TODO comments left in the smart contract.                                                                        | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/todo_comment)                                                                                                                                                                  | Enhancement |
-| [tx-sender-in-assert](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/6-tx-sender-in-assert.md)             | Usage of tx-sender in assert is truly intended.                                                                       | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/tx_sender_in_assert)                                                                                                                                                                  | High |
-| [unwrap-panic-usage](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/7-unwrap-panic-usage.md)               | Inappropriate usage of the `unwrap-panic` method, causing unexpected program crashes.                                                                         | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/unwrap_panic_usage)                                                                                                                                                                  | Enhancement |
-| [var-could-be-constant](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/8-var-could-be-constant.md)         | Code that does not change and could be re-define.                                                                         | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/var_could_be_constant)                                                                                                                                                                  | Enhancement |
-| [updated-functions](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/9-updated-functions.md)                 | Old functions.                                                                         | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/updated_functions)                                                                                                                                                                  | Enhancement |
-| [unused-arguments](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/10-unused-arguments.md)                  | Arguments passed but not used.                                                                         | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/unused_arguments)                                                                                                                                                                  | Enhancement |
-| [unused-let-variables](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/11-unused-let-variables.md)          | Local variables declared but not used.                                                                         | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/unused_let_variables)                                                                                                                                                                  | Enhancement |
+| [assert-block-height](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/1-assert-block-height.md)             | Uso de `block-height` como rastreador de tiempo.                                                                                                                 | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/assert_block_height)                                                                                                                                                                              | Crítica     |
+| [call-inside-as-contract](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/2-call-inside-as-contract.md)     | Llamar a otro contrato perdiendo el contexto del contrato inicial.                                                                                                 | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/call_inside_as_contract)                                                                                                                                                                         | Crítica     |
+| [divide-before-multiply](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/3-divide-before-multiply.md)       | Realizar una operación de división antes de multiplicar, lo que provoca pérdida de precisión.                                                                      | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/divide_before_multiply)                                                                                                                                                                          | Crítica     |
+| [private-function-not-used](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/4-private-function-not-used.md) | Código muerto (funciones privadas) dentro del contrato inteligente.                                                                                               | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/private_function_not_used)                                                                                                                                                                       | Mejora      |
+| [todo-comment](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/5-todo-comment.md)                          | Comentarios TODO dejados en el contrato inteligente.                                                                                                              | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/todo_comment)                                                                                                                                                                                    | Mejora      |
+| [tx-sender-in-assert](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/6-tx-sender-in-assert.md)             | Uso de tx-sender en assert de manera indebida.                                                                                                                     | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/tx_sender_in_assert)                                                                                                                                                                             | Alta        |
+| [unwrap-panic-usage](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/7-unwrap-panic-usage.md)               | Uso inapropiado del método `unwrap-panic`, causando bloqueos inesperados en el programa.                                                                           | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/unwrap_panic_usage)                                                                                                                                                                              | Mejora      |
+| [var-could-be-constant](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/8-var-could-be-constant.md)         | Variables que no cambian y podrían ser constantes.                                                                                                                | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/var_could_be_constant)                                                                                                                                                                           | Mejora      |
+| [updated-functions](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/9-updated-functions.md)                 | Funciones obsoletas.                                                                                                                                               | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/updated_functions)                                                                                                                                                                               | Mejora      |
+| [unused-arguments](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/10-unused-arguments.md)                  | Argumentos pasados pero no utilizados.                                                                                                                             | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/unused_arguments)                                                                                                                                                                                | Mejora      |
+| [unused-let-variables](https://github.com/CoinFabrik/stacy/blob/main/docs/vulnerabilities/11-unused-let-variables.md)          | Variables locales declaradas pero no usadas.                                                                                                                       | [1](https://github.com/CoinFabrik/stacy/tree/main/tests/unused_let_variables)                                                                                                                                                                            | Mejora      |
 
-## Contribution guidelines
+## Directrices de Contribución
 
-You can find our contribution guidelines [here](https://github.com/CoinFabrik/stacy/tree/main/docs/contribution_guidelines/contribute.md)
+Puedes encontrar nuestras directrices de contribución [aquí](https://github.com/CoinFabrik/stacy/tree/main/docs/contribution_guidelines/contribute.md).
 
+## Probar Stacy
 
-## Testing Stacy
-
-You can run Stacy over all the test contracts by running the following command:
+Puedes ejecutar Stacy sobre todos los contratos de prueba ejecutando el siguiente comando:
 
 ```shell
 stacy-analyzer lint tests
 ```
 
-It will recursively search for all the `.clar` files in the `tests` directory and run Stacy over them. With this command, you won't need to specify the path to each smart contract.
-This should print the errors in the vulnerable examples, and nothing in the remediated ones!
+Buscará de forma recursiva todos los archivos `.clar` en el directorio `tests` y ejecutará Stacy sobre ellos. Con este comando, no necesitarás especificar la ruta a cada contrato inteligente.
 
-## About CoinFabrik
+Esto debería imprimir los errores en los ejemplos vulnerables, ¡y nada en los ejemplos corregidos!
 
-We - [CoinFabrik](https://www.coinfabrik.com/) - are a research and development company specialized in Web3, with a strong background in cybersecurity. Founded in 2014, we have worked on over 180 blockchain-related projects, EVM based and also for Solana, Algorand, and Polkadot. Beyond development, we offer security audits through a dedicated in-house team of senior cybersecurity professionals, currently working on code in Substrate, Solidity, Clarity, Rust, and TEAL.
+## Acerca de CoinFabrik
 
-Our team has an academic background in computer science and mathematics, with work experience focused on cybersecurity and software development, including academic publications, patents turned into products, and conference presentations. Furthermore, we have an ongoing collaboration on knowledge transfer and open-source projects with the University of Buenos Aires.
+Nosotros - [CoinFabrik](https://www.coinfabrik.com/) - somos una empresa de investigación y desarrollo especializada en Web3, con un sólido historial en ciberseguridad. Fundada en 2014, hemos trabajado en más de 180 proyectos relacionados con blockchain, basados en EVM y también para Solana, Algorand y Polkadot. Más allá del desarrollo, ofrecemos auditorías de seguridad a través de un equipo interno dedicado de profesionales senior en ciberseguridad, que actualmente trabaja con código en Substrate, Solidity, Clarity, Rust y TEAL.
 
-## License
+Nuestro equipo tiene formación académica en ciencias de la computación y matemáticas, con experiencia laboral centrada en ciberseguridad y desarrollo de software, incluidas publicaciones académicas, patentes convertidas en productos y presentaciones en conferencias. Además, tenemos una colaboración continua de transferencia de conocimiento y proyectos de código abierto con la Universidad de Buenos Aires.
 
+## Licencia
 
-Stacy is licensed and distributed under a MIT license. [Contact us](https://www.coinfabrik.com/) if you're looking for an exception to the terms.
+Stacy está licenciado y distribuido bajo una licencia MIT. [Contáctanos](https://www.coinfabrik.com/) si estás buscando una excepción a los términos.
+

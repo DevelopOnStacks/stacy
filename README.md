@@ -9,7 +9,6 @@ Esta herramienta ayudará a los desarrolladores a escribir contratos inteligente
 ## Instalación
 
 ```shell
-pip install git+https://github.com/xlittlerag/tree-sitter-clarity@6eb27feb
 pip install stacy-analyzer
 ```
 
